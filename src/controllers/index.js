@@ -1,7 +1,8 @@
 import express from 'express';
 import authRouter from './authentication';
+import locationsRouter from './locations';
 
-const routers = [authRouter];
+const routers = [authRouter, locationsRouter];
 const router = express.Router();
 
 const routes = (app) => {
