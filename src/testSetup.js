@@ -12,7 +12,6 @@ export const postTestClient = ({
   const request = supertest(app);
   request.post(url).send(data).end((err, res) => {
     if (err) done(err);
-    console.log(res.body);
     expect(res.status).toEqual(status);
     done();
   });
