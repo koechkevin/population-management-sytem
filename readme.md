@@ -1,4 +1,7 @@
-[![Test Coverage](https://api.codeclimate.com/v1/badges/f5e7dc8d62f80c4dd489/test_coverage)](https://codeclimate.com/github/koechkevin/population-management-sytem/test_coverage)[![Maintainability](https://api.codeclimate.com/v1/badges/f5e7dc8d62f80c4dd489/maintainability)](https://codeclimate.com/github/koechkevin/population-management-sytem/maintainability)[![Build Status](https://travis-ci.org/koechkevin/population-management-sytem.svg?branch=master)](https://travis-ci.org/koechkevin/population-management-sytem)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f5e7dc8d62f80c4dd489/test_coverage)](https://codeclimate.com/github/koechkevin/population-management-sytem/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f5e7dc8d62f80c4dd489/maintainability)](https://codeclimate.com/github/koechkevin/population-management-sytem/maintainability)
+[![Build Status](https://travis-ci.org/koechkevin/population-management-sytem.svg?branch=master)](https://travis-ci.org/koechkevin/population-management-sytem)
+[![Coverage Status](https://coveralls.io/repos/github/koechkevin/population-management-sytem/badge.svg?branch=master)](https://coveralls.io/github/koechkevin/population-management-sytem?branch=master)
 #### sms-management-api
 
 The documentation for this api can be accessed [here](https://manage-sms.herokuapp.com/docs/#/)
