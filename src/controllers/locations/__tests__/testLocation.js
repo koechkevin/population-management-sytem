@@ -30,9 +30,9 @@ describe('test create location', () => {
   });
 
   it('creates a nested location', async (done) => {
-    await models.Location.create({ ...location, id: 1 });
+    await models.Location.create({ ...location, id: 1761 });
     const testData = {
-      data: { ...body, parent: 1 }, url: '/api/locations', done, status: 201,
+      data: { ...body, parent: 1761 }, url: '/api/locations', done, status: 201,
     };
     postTestClient(testData);
   });
