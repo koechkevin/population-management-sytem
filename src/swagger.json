@@ -6,7 +6,7 @@
     "version": "1.1"
   },
   "produces": ["application/json"],
-  "host": "manage-sms.herokuapp.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "tags": [
     {
@@ -14,163 +14,15 @@
       "description": "Authentication"
     },
     {
-      "name": "Contacts",
+      "name": "Locations",
       "description": "Contacts Management"
-    },
-    {
-      "name": "Messages",
-      "description": "Messages Management"
     }
   ],
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
-    "/api/contacts": {
-      "post": {
-        "description": "Create a contact to enable you login and send messages",
-        "tags": [
-          "Contacts"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "contacts",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["name", "number"],
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "number": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          {
-            "in": "header",
-            "required": true,
-            "name": "Authorization",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Created"
-          },
-          "422": {
-            "description": "errors"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "description": "Get all sms associated with your number",
-        "parameters": [{
-          "in": "header",
-          "required": true,
-          "name": "Authorization",
-          "type": "string"
-        }],
-        "responses": {
-          "401": {
-            "description": "unauthorized"
-          }
-        }
-      }
-    },
-    "/api/contacts/{number}": {
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "description": "Single contact",
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "type": "string"
-        }, {
-          "name": "number",
-          "in": "path",
-          "description": "number of the contact to retrieve",
-          "required": true,
-          "type": "integer"
-        }],
-        "responses": {
-          "401": {
-            "description": "unauthorized"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Contacts"
-        ],
-        "description": "Single contact",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "type": "string"
-          }, {
-            "name": "number",
-            "in": "path",
-            "description": "number of the contact to edit",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "contacts",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "number": {
-                  "type": "integer"
-                }
-              }
-            }
-          }],
-        "responses": {
-          "401": {
-            "description": "unauthorized"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Contacts"
-        ],
-        "description": "Single contact",
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "type": "string"
-        }, {
-          "name": "number",
-          "in": "path",
-          "description": "number of the contact to retrieve",
-          "required": true,
-          "type": "integer"
-        }],
-        "responses": {
-          "401": {
-            "description": "unauthorized"
-          }
-        }
-      }
-    },
     "/api/auth/login": {
       "post": {
         "description": "Login with registered number and password to obtain a token",
@@ -184,10 +36,10 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["phone", "password"],
+              "required": ["email", "password"],
               "properties": {
-                "phone": {
-                  "type": "integer"
+                "email": {
+                  "type": "string"
                 },
                 "password": {
                   "type": "string"
@@ -246,10 +98,10 @@
         }
       }
     },
-    "/api/sms": {
+    "/api/locations": {
       "get": {
         "tags": [
-          "Messages"
+          "Locations"
         ],
         "description": "Get all sms",
         "parameters": [{
@@ -266,20 +118,23 @@
       "post": {
         "description": "send an sms to a particular contact already registered",
         "tags": [
-          "Messages"
+          "Locations"
         ],
         "parameters": [
           {
             "in": "body",
-            "name": "contacts",
+            "name": "Location",
             "schema": {
               "type": "object",
-              "required": ["to", "message"],
+              "required": ["name", "males", "females"],
               "properties": {
-                "to": {
+                "males": {
                   "type": "integer"
                 },
-                "message": {
+                "females": {
+                  "type": "integer"
+                },
+                "name": {
                   "type": "string"
                 }
               }
@@ -298,36 +153,14 @@
             "description": "errors"
           }
         }
-      },
-      "delete": {
-        "description": "delete my contact with sms",
-        "tags": [
-          "Messages"
-        ],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "type": "string"
-        }],
-        "responses": {
-          "200": {
-            "description": "Contact successfully deleted"
-          },
-          "404": {
-            "description": "Contact does not exist"
-          },
-          "401": {
-            "description": "Invalid token"
-          }
-        }
       }
     },
-    "/api/sms/{id}": {
+    "/api/locations/{id}": {
       "get": {
         "tags": [
-          "Messages"
+          "Locations"
         ],
-        "description": "Single contact",
+        "description": "Single Location",
         "parameters": [{
           "in": "header",
           "name": "Authorization",
@@ -335,7 +168,7 @@
         }, {
           "name": "id",
           "in": "path",
-          "description": "id of the message to retrieve",
+          "description": "id of the location",
           "required": true,
           "type": "integer"
         }],
@@ -347,7 +180,7 @@
       },
       "put": {
         "tags": [
-          "Messages"
+          "Locations"
         ],
         "description": "Single contact",
         "parameters": [{
@@ -357,7 +190,7 @@
         }, {
           "name": "id",
           "in": "path",
-          "description": "id of the message to edit",
+          "description": "id of the location to edit",
           "required": true,
           "type": "integer"
         },{
@@ -365,9 +198,15 @@
           "name": "message",
           "schema": {
             "type": "object",
-            "required": ["message"],
+            "required": ["males", "females"],
             "properties": {
-              "message": {
+              "males": {
+                "type": "integer"
+              },
+              "females": {
+                "type": "integer"
+              },
+              "name": {
                 "type": "string"
               }
             }
@@ -381,7 +220,7 @@
       },
       "delete": {
         "tags": [
-          "Messages"
+          "Locations"
         ],
         "description": "Single contact",
         "parameters": [{
@@ -391,49 +230,7 @@
         }, {
           "name": "id",
           "in": "path",
-          "description": "id of the message to edit",
-          "required": true,
-          "type": "integer"
-        }],
-        "responses": {
-          "401": {
-            "description": "unauthorized"
-          }
-        }
-      }
-    },
-    "/api/personal/sms": {
-      "get": {
-        "tags": [
-          "Messages"
-        ],
-        "description": "Get my sms",
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "type": "string"
-        }],
-        "responses": {
-          "401": {
-            "description": "unauthorized"
-          }
-        }
-      }
-    },
-    "/api/sms/contact/{contact}": {
-      "get": {
-        "tags": [
-          "Messages"
-        ],
-        "description": "messages per contact",
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "type": "string"
-        }, {
-          "name": "contact",
-          "in": "path",
-          "description": "contact to retrieve its messages",
+          "description": "id of the location to delete. All its nested children won't be deleted but will have null parent",
           "required": true,
           "type": "integer"
         }],
