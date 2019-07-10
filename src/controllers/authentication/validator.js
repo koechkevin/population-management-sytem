@@ -32,9 +32,7 @@ export const validateLogin = (req, res, next) => {
   req.checkBody('password', 'password is required').notEmpty().ltrim();
   const { body: { email, phone, number } } = req;
   const loginType = email || phone || number;
-  if (email) {
-    req.checkBody('email', 'invalid email').custom(e => re.test(e.toString().toLowerCase()));
-  }
+  if (email) req.checkBody('email', 'invalid email').custom(e => re.test(e.toString().toLowerCase()));
   if (phone) {
     req.checkBody('phone', 'number is should be a 10 digit number').isInt({
       min: 100000000,
