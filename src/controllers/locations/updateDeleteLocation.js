@@ -1,39 +1,15 @@
 import models from '../../database/models';
 
 export const validateLocationToUpdate = async (req, res, next) => {
-  if (req.body.name) {
-    req
-      .checkBody('name', 'name is required')
-      .notEmpty().isString()
-      .ltrim();
-  }
-  if (req.body.males) {
-    req
-      .checkBody('males', 'males is required')
-      .notEmpty()
-      .isInt()
-      .ltrim();
-  }
-  if (req.body.females) {
-    req
-      .checkBody('females', 'females is required')
-      .notEmpty()
-      .isInt()
-      .ltrim();
-  }
+  if (req.body.name) req.checkBody('name', 'name is required').notEmpty().isString().ltrim();
+  if (req.body.males) req.checkBody('males', 'males is required').notEmpty().isInt().ltrim();
+  if (req.body.females) req.checkBody('females', 'females is required').notEmpty().isInt().ltrim();
   if (req.body.parent) {
-    req
-      .checkBody('parent', 'please provide a value')
-      .notEmpty().isInt()
-      .ltrim();
+    req.checkBody('parent', 'please provide a value').notEmpty().isInt().ltrim();
     try {
       if (parseInt(req.body.parent, 10)) {
         const parent = await models.Location.findOne({ where: { id: req.body.parent } });
-        if (!parent) {
-          return res.status(404).json({
-            message: 'No such location',
-          });
-        }
+        if (!parent) return res.status(404).json({ message: 'No such location' });
       }
     } catch (error) {
       /* istanbul ignore next */

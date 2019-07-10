@@ -1,30 +1,16 @@
 import models from '../../database/models';
 
 export const validateLocation = async (req, res, next) => {
-  req
-    .checkBody('name', 'name is required')
-    .notEmpty().isString()
-    .ltrim();
-  req
-    .checkBody('males', 'males is required')
-    .notEmpty().isInt()
-    .ltrim();
-  req
-    .checkBody('females', 'females is required')
-    .notEmpty().isInt()
-    .ltrim();
+  req.checkBody('name', 'name is required').notEmpty().isString().ltrim();
+  req.checkBody('males', 'males is required').notEmpty().isInt().ltrim();
+  req.checkBody('females', 'females is required').notEmpty().isInt().ltrim();
   if (req.body.parent) {
-    req
-      .checkBody('parent', 'please provide a value')
-      .notEmpty().isInt()
-      .ltrim();
+    req.checkBody('parent', 'please provide a value').notEmpty().isInt().ltrim();
     try {
       if (parseInt(req.body.parent, 10)) {
         const parent = await models.Location.findOne({ where: { id: req.body.parent } });
         if (!parent) {
-          return res.status(404).json({
-            message: 'No such location',
-          });
+          return res.status(404).json({ message: 'No such location'});
         }
       }
     } catch (error) {

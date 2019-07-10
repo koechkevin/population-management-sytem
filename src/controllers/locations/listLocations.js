@@ -3,13 +3,7 @@ import models from '../../database/models';
 
 const calculateTotals = async () => {
   const locationsWithParents = await models.Location
-    .findAll({
-      where: {
-        parent: {
-          [Op.ne]: null,
-        },
-      },
-    });
+    .findAll({ where: { parent: { [Op.ne]: null } } });
   const parentLocations = locationsWithParents.map(each => each.parent);
   const locations = await models.Location.findAll();
   return locations.map((location) => {
