@@ -36,6 +36,7 @@ export const validateLocationToUpdate = async (req, res, next) => {
         }
       }
     } catch (error) {
+      /* istanbul ignore next */
       return res.status(400).json({ errors: 'An error occurred' });
     }
   }
@@ -52,6 +53,7 @@ export const updateLocation = async (req, res) => {
     if (didUpdate) return res.status(200).json({ updated: updated[0] });
     return res.status(400).json({ error: 'No update executed' });
   } catch (e) {
+    /* istanbul ignore next */
     return res.status(400).json({ error: e.message });
   }
 };
@@ -70,6 +72,7 @@ export const deleteLocation = async (req, res) => {
     });
     res.status(200).json({ message: 'This location has been successfully deleted' });
   } catch (e) {
+    /* istanbul ignore next */
     res.status(400).json({ error: e.message });
   }
 };

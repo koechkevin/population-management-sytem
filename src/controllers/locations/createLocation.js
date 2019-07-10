@@ -28,6 +28,7 @@ export const validateLocation = async (req, res, next) => {
         }
       }
     } catch (error) {
+      /* istanbul ignore next */
       return res.status(400).json({ errors: 'An error occurred' });
     }
   }
@@ -48,6 +49,7 @@ export const createLocation = async (req, res) => {
     });
     res.status(201).json({ newLocation });
   } catch (e) {
+    /* istanbul ignore next */
     res.status(400).json({ error: e.message });
   }
 };

@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "sms-management-api",
-    "description": "This is sms management api",
+    "title": "population management system",
+    "description": "This is population management api",
     "version": "1.1"
   },
   "produces": ["application/json"],

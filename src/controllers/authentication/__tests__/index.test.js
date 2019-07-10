@@ -1,4 +1,4 @@
-import { destroyTable, postTestClient } from '../../testSetup';
+import { destroyTable, postTestClient } from '../../../testSetup';
 
 describe('test', () => {
   afterAll(async () => {

@@ -38,6 +38,7 @@ export const listLocations = async (req, res) => {
     const calculatedTotals = await calculateTotals();
     res.status(200).json({ locations: calculatedTotals });
   } catch (e) {
+    /* istanbul ignore next */
     res.status(400).json({ error: e.message });
   }
 };
@@ -49,6 +50,7 @@ export const getOneLocation = async (req, res) => {
     if (locationFromTotals.length) return res.status(200).json({ location: locationFromTotals[0] });
     return res.status(404).json({ message: 'Location not found' });
   } catch (e) {
+    /* istanbul ignore next */
     return res.status(400).json({ error: e.message });
   }
 };
