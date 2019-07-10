@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/koechkevin/population-management-sytem/badge.svg?branch=master)](https://coveralls.io/github/koechkevin/population-management-sytem?branch=master)
 #### sms-management-api
 
-The documentation for this api can be accessed [here](https://manage-sms.herokuapp.com/docs/#/)
+The documentation for this api can be accessed [here](https://population-system-api.herokuapp.com/docs/)
 
 ## Setup
  - Libraries, tools and Frameworks
