@@ -11,8 +11,8 @@ The documentation for this api can be accessed [here](https://population-system-
     - Node js - Javascript runtime environment
     - Express js - A Javascript web applications framework.
     - Babel 7 - A Javascript transpiler that transforms the latest versions to browser compatible versions.
-- Clone the repository - `$ git clone https://github.com/koechkevin/sms-management-api.git` 
-- Change into the project directory - `$ cd sms-management-api`
+- Clone the repository - `$ git clone https://github.com/koechkevin/population-management-sytem.git` 
+- Change into the project directory - `$ cd population-management-sytem`
 - Install the dependencies - `$ yarn install`
     - Please provide the following environment variables
     
